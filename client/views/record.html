@@ -1,0 +1,88 @@
+<template name="record">
+	{{#if showRecord}}
+		<div class="container">
+			<h1>Record a New Workout</h1>
+			<div class="row-fluid">
+				<div class="span5">
+					<h3>List of workouts</h3>
+					<div class="work-out-list">
+						{{> WorkOutList}}
+					</div>
+				</div>
+				<div class="span7 workout-submit">
+					<h3>Workout</h3>
+						{{> ExerciseList}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="WorkOutList">
+	<ul class="work-out-list-item">
+		{{#each workouts}}
+		<li class="work-out-name">
+			{{name}}
+		</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="ExerciseList">
+	{{#if exercisesperformed}}
+		{{#each exercisesperformed}}
+		<div class="exercise-item-container">
+			<h4>{{name}}</h4>
+			{{> SetList}}
+			<div class="btn btn-success add-set">
+				+
+			</div>
+		</div>
+		{{/each}}
+		<div id="save-workout" class="btn btn-primary">
+				Save Workout
+		</div>
+		<div id="cancel-workout" class="btn">
+				Nope
+		</div>
+	{{else}}
+		Click to the left to start a new workout
+	{{/if}}
+</template>
+
+<template name="SetList">
+	{{#each setsperformed}}
+		<div class="set-input-container">
+			{{#if active}}
+				<div class="set-input">
+					<div class="saved-weight">
+						{{weight}} <span>lbs</span>
+					</div>
+					<div class="times">
+						x
+					</div>
+					<div class="saved-reps">
+						{{reps}} <span>reps</span>
+					</div>
+					<span class="delete">delete</span>
+				</div>
+			{{else}}
+				<div class="set-input">
+					<div class="input-append">
+						<input class="weight-input" type="text" placeholder="weight" value="{{weight}}"/>
+						<span class="add-on">lbs</span>
+					</div>
+					<div class="times">
+						x
+					</div>
+					<div class="input-append">
+						<input class="repetition-input" type="text" placeholder="reps" value="{{reps}}"/>
+						<span class="add-on">reps</span>
+					</div>
+					<span class="save">save</span>
+					<span class="delete">delete</span>
+				</div>
+			{{/if}}
+		</div>
+	{{/each}}
+</template>

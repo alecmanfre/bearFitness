@@ -1,0 +1,9 @@
+<template name="login">
+	{{#if currentUser}}
+	{{else}}
+		<div class="container">
+			<h1>Login</h1>
+			{{loginButtons}}
+		</div>
+	{{/if}}
+</template>

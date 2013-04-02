@@ -1,0 +1,60 @@
+<template name="track">
+	{{#if showTrack}}
+		<div class="container">
+			<h1>Review a workout</h1>
+			<div class="row-fluid">
+				<div class="span5">
+					<h3>List of all exercises</h3>
+					<div class="exercise-performed-list">
+						{{> ExercisePerformedList}}
+					</div>
+				</div>
+				<div class="span7 exercise-review">
+					<h3>Perforamnce</h3>
+						{{> ExercisePerformance}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="ExercisePerformedList">
+	<ul class="exercise-list-item">
+		{{#each exercises}}
+		<li class="exercise-name">
+			{{name}}
+		</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="ExercisePerformance">
+	{{#if exercisesperformed}}
+		{{#each exercisesperformed}}
+		<div class="exercise-item-container">
+			<h4>{{name}} performed on {{date}}</h4>
+				{{> SetPerformedList}}
+		</div>
+		{{/each}}
+	{{else}}
+		Haven't performed this workout yet! Get to the to the gym and hit it hard!
+	{{/if}}
+</template>
+
+<template name="SetPerformedList">
+	{{#each setsperformed}}
+		<div class="set-input-container">
+			<div class="set-input">
+				<div class="saved-weight">
+					{{weight}} <span>lbs</span>
+				</div>
+				<div class="times">
+					x
+				</div>
+				<div class="saved-reps">
+					{{reps}} <span>reps</span>
+				</div>
+			</div>
+		</div>
+	{{/each}}
+</template>
