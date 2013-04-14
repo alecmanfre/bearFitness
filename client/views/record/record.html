@@ -1,0 +1,116 @@
+<template name="record">
+	{{#if showRecord}}
+		<div class="span12">
+			<h1>Record a New Workout</h1>
+			<div class="row">
+				<div class="span3">
+					<div class="work-out-list">
+						{{> WorkOutList}}
+					</div>
+				</div>
+				<div class="span9 workout-submit">
+					{{> ExerciseList}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="WorkOutList">
+	<ul class="side-nav-container">
+		{{#each workouts}}
+		<li class="side-nav-item">
+			{{name}}
+		</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="ExerciseList">
+	<div class="record-workout-title-container clear-fix">
+		<h2 class="record-workout-title">Upper Body</h2>
+		<div class="recorded-date-title">W - April 8, 2013</div>
+	</div>
+	<div class="record-exercise-container clear-fix">
+		<div class="new-exercise-container clear-fix">
+			<div class="exercise-title-bar clear-fix">
+				<div class="exercise-name">Bench Press</div>
+			</div>
+			<div class="row">
+				<div class="record-sets-container">
+					<div class="record-results-header clear-fix">
+						<div class="record-sets-header">Sets</div>
+						<div class="record-reps-header">Reps</div>
+						<div class="record-weight-header">Weight</div>
+						<div class="record-notes-header">Notes</div>
+					</div>
+					<div class="results-list clear-fix">
+						<div class="record-sets">1</div>
+						<div class="record-reps"><input class="record-reps-input" type="text" placeholder="10"/></div>
+						<div class="record-weight"><input class="record-weight-input" type="text" placeholder="120"/></div>
+						<div class="record-notes"><input class="record-notes-input" type="text" placeholder="Add workout notes"/></div>
+					</div>
+					<div class="add-new-set">+</div>
+				</div>
+				<div class="record-future-section">
+				</div>
+			</div>
+		</div>
+	</div>
+	{{#if exercisesperformed}}
+		{{#each exercisesperformed}}
+		<div class="exercise-item-container">
+			<h4>{{name}}</h4>
+			{{> SetList}}
+			<div class="btn btn-success add-set">
+				+
+			</div>
+		</div>
+		{{/each}}
+		<div id="save-workout" class="btn btn-primary">
+				Save Workout
+		</div>
+		<div id="cancel-workout" class="btn">
+				Nope
+		</div>
+	{{else}}
+		Click to the left to start a new workout
+	{{/if}}
+</template>
+
+<template name="SetList">
+	{{#each setsperformed}}
+		<div class="set-input-container">
+			{{#if active}}
+				<div class="set-input">
+					<div class="saved-weight">
+						{{weight}} <span>lbs</span>
+					</div>
+					<div class="times">
+						x
+					</div>
+					<div class="saved-reps">
+						{{reps}} <span>reps</span>
+					</div>
+					<span class="delete">delete</span>
+				</div>
+			{{else}}
+				<div class="set-input">
+					<div class="input-append">
+						<input class="weight-input" type="text" placeholder="weight" value="{{weight}}"/>
+						<span class="add-on">lbs</span>
+					</div>
+					<div class="times">
+						x
+					</div>
+					<div class="input-append">
+						<input class="repetition-input" type="text" placeholder="reps" value="{{reps}}"/>
+						<span class="add-on">reps</span>
+					</div>
+					<span class="save">save</span>
+					<span class="delete">delete</span>
+				</div>
+			{{/if}}
+		</div>
+	{{/each}}
+</template>

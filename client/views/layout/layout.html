@@ -1,0 +1,24 @@
+<template name="layout">
+	<div class="nav-bar">
+		<div class="container">
+			<div id="logo">
+				<span id="logo-bear">Bear</span><span id="logo-fitness"><em>Fitness</em></span>
+			</div>
+			<div id="nav-menu">
+				<a class="menu-item {{#if showPlan}}menu-item-selected {{/if}}" href="/"><div class="menu-item-name">PLAN</div></a>
+				<a class="menu-item {{#if showTrack}}menu-item-selected {{/if}}"  href="/#track"><div class="menu-item-name">TRACK</div></a>
+				<a class="menu-item menu-item-right {{#if showRecord}}menu-item-selected {{/if}}" href="/#record"><div class="menu-item-name">RECORD</div></a>
+			</div>
+			<div id="user-container">
+				<img class="profile-picture" src="http://graph.facebook.com/{{id}}/picture?width=30&height=30">
+				{{loginButtons align="right"}}
+			</div>
+		</div>
+	</div>
+	<div class="container"> 
+		{{> record}}
+		{{> plan}}
+		{{> track}}
+		{{> login}}
+	</div>
+</template>

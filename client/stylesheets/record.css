@@ -1,0 +1,145 @@
+.record-workout-title-container{
+	border-bottom: 1px solid #999;
+	padding-bottom: 10px;
+}
+
+.record-workout-title{
+	display: inline-block;
+	float: left;
+}
+
+.recorded-date-title{
+	display: inline-block;
+	float: left;
+	font-size: 18px;
+	line-height: 20px;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+/*Record a new exercise*/
+.record-exercise-container{
+
+}
+
+.new-exercise-container{
+	padding-top: 10px;
+
+}
+
+.exercise-title-bar{
+
+}
+
+.record-results-header{
+	background-color: #E6E6E6;
+	font-size: 12px;
+	height: 25px;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+
+.exercise-name{
+	display: inline-block;
+	float: left;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.record-sets-container{
+	display: inline-block;
+	float: left;
+	width: 500px;
+}
+
+.record-future-section{
+	display: inline-block;
+	float: left;
+	width: 248px;
+	height: 100px;
+	background: #e9e9e9;
+	margin-left: 20px;
+}
+
+.record-sets-header,
+.record-reps-header,
+.record-weight-header,
+.record-notes-header,
+.record-sets,
+.record-reps,
+.record-weight,
+.record-notes{
+	display: inline-block;
+	float: left;
+	text-align: center;
+	line-height: 25px;
+}
+
+.record-sets,
+.record-reps,
+.record-weight,
+.record-notes{
+	line-height: 30px;
+}
+
+.record-sets-header,
+.record-sets{
+	width: 48px;
+	border-right: 1px solid #999;
+	border-left: 1px solid #999;
+}
+
+.record-reps-header,
+.record-reps{
+	width: 90px;
+	border-right: 1px solid #999;
+}
+
+.record-weight-header,
+.record-weight{
+	width: 120px;
+	border-right: 1px solid #999;
+}
+
+.record-notes-header,
+.record-notes {
+	width: 237px;
+	border-right: 1px solid #999;
+}
+
+.record-reps-input,
+.record-weight-input,
+.record-notes-input{
+	height: 26px;
+	border: none;
+}
+
+.record-reps-input{
+	width: 86px;
+	text-align: center;
+}
+
+.record-weight-input{
+	width: 116px;
+	text-align: center;
+}
+
+.record-notes-input{
+	width: 234px;
+}
+
+.add-new-set{
+	border-radius: 17px;
+	background-color: #3A2F26;
+	width: 17px;
+	height: 17px;
+	padding: 4px;
+	text-align: center;
+	line-height: 17px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.add-new-set:hover{
+	background-color: #52941c;
+}

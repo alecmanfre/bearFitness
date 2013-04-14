@@ -1,0 +1,113 @@
+<template name="track">
+	{{#if showTrack}}
+		<div class="span12">
+			<h1>Review a workout</h1>
+			<div class="row">
+				<div class="span3">
+					{{> ExercisePerformedList}}
+				</div>
+				<div class="span9">
+					{{> ExercisePerformance}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="ExercisePerformedList">
+	<ul class="side-nav-container">
+		{{#each exercises}}
+		<li class="side-nav-item">
+			{{name}}
+		</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="ExercisePerformance">
+	<h2>{{currentExercise}}</h2>
+	<div class="row">
+		<div class="span3 leader-board-container">
+			<div class="current-rank-container">
+				<div class="leader-board-title">Current Rank</div>
+				<span class="my-rank">1</span>
+				<span class="out-of">/30</span>
+			</div>
+			<div class="max-weight-container">
+				<div class="leader-board-title">Max Weight</div>
+				<span class="max-weight">150</span>
+				<span class="units">lbs</span>
+			</div>
+			<div class="leader-board clear-fix">
+				<div class="record-container clear-fix">
+					<div class="leader-rank">1</div>
+					<div class="leader-name">Ramu Annamalai</div>
+					<div class="leader-weight">160</div>
+				</div>
+			</div>
+		</div>
+		<div class="span6 performance-graph-container">
+			Future Performance Graph
+		</div>
+
+		<div class="row">
+			<h3>Results</h3>
+			<div class="results-container clear-fix">
+				<h4 class="overall-results-header">Personal Results</h4>
+				{{#if exercisesperformed}}
+					{{#each exercisesperformed}}
+						<div class="listed-result-container clear-fix">
+							<div class="results-title-bar clear-fix">
+								<img class="user-result-pic" src="http://graph.facebook.com/{{id}}/picture?width=30&height=30" alt="pic"/>
+								<div class="date-title">{{dayOfWeek}} - {{date}}</div>
+							</div>
+							<div class="results-header clear-fix">
+								<div class="sets-completed-header">Sets</div>
+								<div class="reps-completed-header">Reps</div>
+								<div class="weight-completed-header">Weight</div>
+								<div class="notes-completed-header">Notes</div>
+							</div>
+							{{> SetPerformedList}}
+						</div>
+					{{/each}}
+				{{else}}
+					Haven't performed this workout yet! Get to the to the gym and hit it hard!
+				{{/if}}
+			</div>
+
+			<div class="results-container clear-fix">
+				<h4 class="overall-results-header">Friends Results</h4>
+				<div class="listed-result-container clear-fix">
+					<div class="results-title-bar clear-fix">
+						<img class="user-result-pic" src="" alt="pic"/>
+						<div class="date-title">W - April 8, 2013</div>
+					</div>
+					<div class="results-header clear-fix">
+						<div class="sets-completed-header">Sets</div>
+						<div class="reps-completed-header">Reps</div>
+						<div class="weight-completed-header">Weight</div>
+						<div class="notes-completed-header">Notes</div>
+					</div>
+					<div class="results-list clear-fix">
+						<div class="sets-completed">1</div>
+						<div class="reps-completed">4 reps</div>
+						<div class="weight-completed">120 lbs</div>
+						<div class="notes-completed">-</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="SetPerformedList">
+	
+	{{#each setsperformed}}
+		<div class="results-list clear-fix">
+			<div class="sets-completed">1</div>
+			<div class="reps-completed">{{reps}} reps</div>
+			<div class="weight-completed">{{weight}} lbs</div>
+			<div class="notes-completed">-</div>
+		</div>
+	{{/each}}
+</template>

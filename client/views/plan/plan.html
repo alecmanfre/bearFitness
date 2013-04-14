@@ -1,0 +1,66 @@
+<template name="plan">
+	{{#if showPlan}}
+		<div class="span12">
+			<h1>Plan</h1>
+			<div class="row">
+				<div class="span4 workout-plan-column-container">
+					<h2 class="workout-plan-column-title">Your Workouts</h2>
+					<div class="work-outs-container">
+						{{> WorkOutContainer}}
+					</div>
+				</div>
+				<div class="span4 workout-plan-column-container">
+					<h2 class="workout-plan-column-title">Friends Workouts</h2>
+				</div>
+				<div class="span4 workout-plan-column-container">
+					<h2 class="workout-plan-column-title">Create New Workout</h2>
+					{{> newWorkOut}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="newWorkOut">
+	<div class="work-out-container">
+			<input type="text" id="work-out-input" class="input work-out-title" placeholder="Work Out Title" />
+			<div class="exercise-list-container">
+				<div class="exercise-name-header">
+					Exercise Name
+				</div>
+				<div class="exercise">
+					<input type="text" class="exercise-name-input" placeholder="Add exercise" />
+					<span><a class="delete">add new</a></span>
+				</div>
+			</div>
+			<div id="submit-new-workout" class="button">Save</div>
+		</div>
+</template>
+
+<template name="WorkOutContainer">
+	{{#each workouts}}
+		<div class="work-out-container">
+			<h3 class="work-out-title">{{name}}</h3>
+			<span><a class="delete">remove</a></span>
+			<div class="exercise-list-container">
+				<div class="exercise-name-header">
+					Exercise Name
+				</div>
+				{{> exercises}}
+			</div>
+		</div>
+	{{/each}}
+
+</template>
+
+<template name="exercises">
+		{{#each exercises}}
+			{{> exercise}}
+		{{/each}}
+</template>
+
+<template name="exercise">
+	<div class="exercise">
+		{{name}} <span><a class="delete">delete</a></span>
+	</div>
+</template>
