@@ -15,7 +15,7 @@ var Router = Backbone.Router.extend({
     }
     Meteor.subscribe('userData');
   },
-
+    
   routes: {
     "": "plan",
     "record": "record",

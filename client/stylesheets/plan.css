@@ -57,9 +57,48 @@
 }
 
 /*New workout*/
-#work-out-input{
-	width: 280px;
-	border: none;
+#workout-input{
+	width: 196px;
+	border: solid 1px #999;
+	padding: 6px 0px 6px 6px;
+	margin-right: 5px;
+	margin-bottom: 15px;
+}
+
+#save-workout-name{
+	border: 1px solid #999;
+}
+
+#create-new-workout{
+	width: 220px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#create-new-workout-container{
+	text-align: center;
+}
+
+.add-exercise{
+	font-size: 18px;
+	margin-bottom: 10px;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	line-height: 30px;
+	text-align: center;
+	background-color: #e9e9e9;
+	color: #424242;
+	border: 1px solid #999;
+	cursor: pointer;
+}
+
+.add-exercise:hover{
+	background-color: #999;
 }
 
 .exercise-name-input{

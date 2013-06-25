@@ -7,10 +7,30 @@ Template.WorkOutList.workouts = function(){
 };
 
 Template.ExerciseList.exercisesperformed = function () {
-  if(Session.get('currentWorkoutId') != 0){
-    return ExercisesPerformed.find({parent: Session.get('currentWorkoutId'),user: Meteor.userId()});    
-  };
-};  
+  if(Session.get('currentWorkoutId') == null){
+    return 0
+  }else{
+    return ExercisesPerformed.find({parent: Session.get('currentWorkoutId'),user: Meteor.userId()});
+  }
+};
+
+Template.ExerciseList.workoutName = function () {
+  var workOutPerformedQuery = WorkOutsPerformed.find({_id: Session.get('currentWorkoutId')});
+  var workOutPerformedArray = workOutPerformedQuery.fetch();
+  return workOutPerformedArray[0].name;
+};
+
+Template.ExerciseList.dayOfWeek = function () {
+  var workOutPerformedQuery = WorkOutsPerformed.find({_id: Session.get('currentWorkoutId')});
+  var workOutPerformedArray = workOutPerformedQuery.fetch();
+  return workOutPerformedArray[0].dayOfWeek;
+};
+
+Template.ExerciseList.todaysDate = function () {
+  var workOutPerformedQuery = WorkOutsPerformed.find({_id: Session.get('currentWorkoutId')});
+  var workOutPerformedArray = workOutPerformedQuery.fetch();
+  return workOutPerformedArray[0].date;
+};
 
 Template.SetList.setsperformed = function(){
   return SetsPerformed.find({parent: this._id,user: Meteor.userId()});
@@ -20,12 +40,12 @@ Template.WorkOutList.events({
   'click .side-nav-item' : function() {
     var workOutPerformedId = WorkOutsPerformed.insert({
       name: this.name,
-      date: Date.now(),
+      date: todaysDate(),
+      dayOfWeek: dayOfWeek(),
       parent: this._id,
       user: Meteor.userId()
     })
     var exercises = Exercises.find({parent: this._id, user: Meteor.userId()});  
-
     exercises.forEach(function(exr){
       ExercisesPerformed.insert({
         name: exr.name,
@@ -41,30 +61,63 @@ Template.WorkOutList.events({
 });
 
 Template.ExerciseList.events({
-  'click .add-set' : function(){
+  'click .add-new-set' : function(){
+    var setValueQuery = SetsPerformed.find({parent: this._id,user: Meteor.userId()});
+    var setValueArray = setValueQuery.fetch();
+    var index = setValueArray.length - 1;
+    var setNumber;
+    var reps;
+    var weight;
+
+    if(index == -1){
+      setNumber = 1;
+      reps = 0;
+      weight = 0;
+    }else{
+      setNumber = setValueArray[index].set + 1;
+      reps = setValueArray[index].reps;
+      weight = setValueArray[index].weight;
+    }
+    
     SetsPerformed.insert({
       date: Date.now(),
-      reps: 0,
-      weight: 0,
+      set: setNumber,
+      reps: reps,
+      weight: weight,
       active: false,
+      notes: '',
       parent: this._id,
       user: Meteor.userId()
     });
   },
   'click #save-workout' : function(){
-    Session.set('currentWorkoutId',0);
+    Session.set('currentWorkoutId',null);
+  },
+  'click #cancel-workout' : function(){
+    Session.set('currentWorkoutId',null);
   }
 });
 
 Template.SetList.events({
-  'click .save' : function(evt){
+  'blur .record-reps-input' : function(evt){
     var currentTarget = $(evt.currentTarget.parentElement);
-    var reps = $('.repetition-input',currentTarget).val();
-    var weight = $('.weight-input',currentTarget).val();
+    var reps = $('.record-reps-input',currentTarget).val();
     SetsPerformed.update({_id: this._id},{$set:{
       reps: reps,
+    }})
+  },
+  'blur .record-weight-input' : function(evt){
+    var currentTarget = $(evt.currentTarget.parentElement);
+    var weight = $('.record-weight-input',currentTarget).val();
+    SetsPerformed.update({_id: this._id},{$set:{
       weight: weight,
-      active: true
+    }})
+  },
+  'blur .record-notes-input' : function(evt){
+    var currentTarget = $(evt.currentTarget.parentElement);
+    var notes = $('.record-notes-input',currentTarget).val();
+    SetsPerformed.update({_id: this._id},{$set:{
+      notes: notes,
     }})
   },
   'click .delete' : function(){

@@ -1,9 +1,15 @@
 <template name="login">
 	{{#if currentUser}}
 	{{else}}
+	<div id="login">
 		<div class="container">
-			<h1>Login</h1>
-			{{loginButtons}}
+			<div id="login-wrapper" class="clearfix">
+				<div class="login-container">
+					<h1>Login</h1>
+					{{loginButtons}}
+				</div>
+			</div>
 		</div>
+	</div>
 	{{/if}}
 </template>

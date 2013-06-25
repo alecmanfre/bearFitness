@@ -22,19 +22,36 @@
 </template>
 
 <template name="newWorkOut">
-	<div class="work-out-container">
-			<input type="text" id="work-out-input" class="input work-out-title" placeholder="Work Out Title" />
-			<div class="exercise-list-container">
-				<div class="exercise-name-header">
-					Exercise Name
-				</div>
-				<div class="exercise">
-					<input type="text" class="exercise-name-input" placeholder="Add exercise" />
-					<span><a class="delete">add new</a></span>
-				</div>
+	{{#if createWorkout}}
+		{{#if insertName}}
+			<div class="work-out-container">
+				<div class="helper-text">Name this workout</div>
+				<input type="text" id="workout-input" class="input" placeholder="Work Out Name" />
+				<div id="save-workout-name" class="button">Let's go!</div>
 			</div>
-			<div id="submit-new-workout" class="button">Save</div>
+		{{else}}
+			<div class="work-out-container">
+				{{> addExercises}}
+			</div>
+		{{/if}}
+	{{else}}
+		<div id="create-new-workout-container">
+			<div id="create-new-workout" class="button button-green">Create New Workout</div>
 		</div>
+	{{/if}}
+</template>
+
+<template name="addExercises">
+	<h3 class="work-out-title">{{workOutName}}</h3>
+	<div class="exercise-list-container">
+		<div class="exercise-name-header">Exercise Name</div>
+		{{> exercises}}
+	</div>
+	<div id="add-exercise-container">
+		<div class="add-exercise">+</div>
+	</div>
+	<div id="submit-new-workout" class="button button-green">Save</div>
+	<div id="cancel-new-workout" class="button">Cancel</div>
 </template>
 
 <template name="WorkOutContainer">
@@ -46,21 +63,28 @@
 				<div class="exercise-name-header">
 					Exercise Name
 				</div>
-				{{> exercises}}
+				{{> savedExercises}}
 			</div>
 		</div>
 	{{/each}}
+</template>
 
+<template name="savedExercises">
+	{{#each exercises}}
+		<div class="exercise">
+			{{name}}
+		</div>
+	{{/each}}
 </template>
 
 <template name="exercises">
-		{{#each exercises}}
-			{{> exercise}}
-		{{/each}}
+	{{#each exercises}}
+		{{> exercise}}
+	{{/each}}
 </template>
 
 <template name="exercise">
 	<div class="exercise">
-		{{name}} <span><a class="delete">delete</a></span>
+		<input type="text" class="exercise-name-input" placeholder="Add exercise" value="{{name}}" />
 	</div>
 </template>

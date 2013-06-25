@@ -199,7 +199,7 @@ h5{
 	margin-right: 10px
 }
 
-/*Elements*/
+/*Forms*/
 .input{
 	height: 25px;
 	line-height: 25px;
@@ -209,6 +209,11 @@ h5{
 	padding: 3px;
 }
 
+.helper-text{
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
 
 .button{
 	background-color: #262323;
@@ -245,4 +250,28 @@ h5{
 
 .side-nav-selected,.side-nav-item:hover{
 	background-color: #e9e9e9;
+}
+
+/*Buttons*/
+.button{
+	display: inline-block;
+	border-radius: 2px;
+	padding: 7px 10px 7px 10px;
+	background-color: #999;
+	color: #343333;
+	cursor: pointer;
+}
+
+.button:hover{
+	background-color: #7D7D7D;
+}
+
+.button-green{
+	background-color: #52941c;
+	color: #fff;
+}
+
+.button-green:hover{
+	background-color: #437A16;
+	color: #fff;
 }

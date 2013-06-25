@@ -27,50 +27,40 @@
 </template>
 
 <template name="ExerciseList">
-	<div class="record-workout-title-container clear-fix">
-		<h2 class="record-workout-title">Upper Body</h2>
-		<div class="recorded-date-title">W - April 8, 2013</div>
-	</div>
-	<div class="record-exercise-container clear-fix">
-		<div class="new-exercise-container clear-fix">
-			<div class="exercise-title-bar clear-fix">
-				<div class="exercise-name">Bench Press</div>
-			</div>
-			<div class="row">
-				<div class="record-sets-container">
-					<div class="record-results-header clear-fix">
-						<div class="record-sets-header">Sets</div>
-						<div class="record-reps-header">Reps</div>
-						<div class="record-weight-header">Weight</div>
-						<div class="record-notes-header">Notes</div>
-					</div>
-					<div class="results-list clear-fix">
-						<div class="record-sets">1</div>
-						<div class="record-reps"><input class="record-reps-input" type="text" placeholder="10"/></div>
-						<div class="record-weight"><input class="record-weight-input" type="text" placeholder="120"/></div>
-						<div class="record-notes"><input class="record-notes-input" type="text" placeholder="Add workout notes"/></div>
-					</div>
-					<div class="add-new-set">+</div>
-				</div>
-				<div class="record-future-section">
-				</div>
-			</div>
-		</div>
-	</div>
 	{{#if exercisesperformed}}
+		<div class="record-workout-title-container clear-fix">
+			<h2 class="record-workout-title">{{workoutName}}</h2>
+			<div class="recorded-date-title">{{dayOfWeek}} - {{todaysDate}}</div>
+		</div>
+
+	
 		{{#each exercisesperformed}}
-		<div class="exercise-item-container">
-			<h4>{{name}}</h4>
-			{{> SetList}}
-			<div class="btn btn-success add-set">
-				+
+			<div class="record-exercise-container clear-fix">
+				<div class="new-exercise-container clear-fix">
+					<div class="exercise-title-bar clear-fix">
+						<div class="exercise-name">{{name}}</div>
+					</div>
+					<div class="row">
+						<div class="record-sets-container">
+							<div class="record-results-header clear-fix">
+								<div class="record-sets-header">Sets</div>
+								<div class="record-reps-header">Reps</div>
+								<div class="record-weight-header">Weight</div>
+								<div class="record-notes-header">Notes</div>
+							</div>
+							{{> SetList}}
+							<div class="add-new-set">+</div>
+						</div>
+						<div class="record-future-section">
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
 		{{/each}}
-		<div id="save-workout" class="btn btn-primary">
-				Save Workout
+		<div id="save-workout" class="button button-green">
+				Save
 		</div>
-		<div id="cancel-workout" class="btn">
+		<div id="cancel-workout" class="button">
 				Nope
 		</div>
 	{{else}}
@@ -80,37 +70,13 @@
 
 <template name="SetList">
 	{{#each setsperformed}}
-		<div class="set-input-container">
-			{{#if active}}
-				<div class="set-input">
-					<div class="saved-weight">
-						{{weight}} <span>lbs</span>
-					</div>
-					<div class="times">
-						x
-					</div>
-					<div class="saved-reps">
-						{{reps}} <span>reps</span>
-					</div>
-					<span class="delete">delete</span>
-				</div>
-			{{else}}
-				<div class="set-input">
-					<div class="input-append">
-						<input class="weight-input" type="text" placeholder="weight" value="{{weight}}"/>
-						<span class="add-on">lbs</span>
-					</div>
-					<div class="times">
-						x
-					</div>
-					<div class="input-append">
-						<input class="repetition-input" type="text" placeholder="reps" value="{{reps}}"/>
-						<span class="add-on">reps</span>
-					</div>
-					<span class="save">save</span>
-					<span class="delete">delete</span>
-				</div>
-			{{/if}}
+		<div class="results-list clear-fix">
+			<div class="record-sets">{{set}}</div>
+			<div class="record-reps"><input class="record-reps-input" type="text" placeholder="10" value="{{reps}}"/></div>
+			<div class="record-weight"><input class="record-weight-input" type="text" placeholder="120" value="{{weight}}"/></div>
+			<div class="record-notes"><input class="record-notes-input" type="text" placeholder="Add workout notes" value="{{notes}}"/></div>
 		</div>
 	{{/each}}
+
+
 </template>
